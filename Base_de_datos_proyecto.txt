@@ -1,0 +1,103 @@
+CREATE DATABASE RESERVAV
+Use RESERVAV
+create table PAIS(
+idpais int primary key not null,
+nombre varchar(50) not null unique
+);
+create table PASAJERO(
+idpasajero char(10) not null primary key,
+nombre varchar (50) not null,
+apaterno varchar (20) not null,
+amaterno varchar (20) not null,
+tipo_documento varchar (50) not null,
+num_documento varchar (20) not null,
+fecha_naciemiento date not null,
+idpais int not null,
+teléfono varchar (30) null,
+email varchar (100) not null unique,
+clave varchar(50) not null
+);
+ALTER TABLE pasajero
+ADD CONSTRAINT FK_pasajero_pais
+FOREIGN KEY (idpais) REFERENCES pais (idpais);
+create table AEROPUERTO (
+idaeropuerto int primary key not null,
+nombre varchar(50) null,
+idpais int
+);
+ALTER TABLE aeropuerto
+ADD CONSTRAINT FK_aeropuerto_pais
+FOREIGN KEY(idpais) REFERENCES pais (idpais);
+create table AEROLINEA (
+idaerolinea int not null primary key,
+ruc varchar(20) not null unique,
+nombre varchar(50) not null unique
+);
+create table AVION (
+idavion varchar(20) not null primary key not null,
+idaerolinea int not null,
+fabricante varchar (100) null,
+tipo varchar (50) null,
+capacidad int not null
+);
+ALTER TABLE avion
+ADD CONSTRAINT FK_avion_aerolinea
+FOREIGN KEY (idaerolinea) REFERENCES aerolinea(idaerolinea);
+create table ASIENTO (
+idasiento int not null primary key,
+letra varchar(10) null,
+fila varchar (100) null
+);
+create table TARIFA (
+idtarifa int not null primary key,
+clase varchar (50) not null unique,
+precio int not null,
+impuesto int not null
+);
+create table RESERVA (
+idreserva int not null primary key,
+costo int not null,
+fecha date null,
+observacion varchar(100) null
+);
+create table VUELO (
+idasiento int not null,
+idaeropuerto int not null,
+idreserva int not null,
+idavion char (5) not null,
+idtarifa int not null
+);
+ALTER TABLE VUELO
+ADD PRIMARY KEY NONCLUSTERED
+(idasiento,idaeropuerto,idreserva,idavion);
+ALTER TABLE vuelo
+ADD CONSTRAINT FK_vuelo_asiento
+FOREIGN KEY (idasiento) REFERENCES asiento(idasiento);
+ALTER TABLE vuelo
+ADD CONSTRAINT FK_vuelo_reserva
+FOREIGN KEY (idreserva) REFERENCES reserva(idreserva);
+ALTER TABLE vuelo
+ADD CONSTRAINT FK_vuelo_avion
+FOREIGN KEY (idavion) REFERENCES avion(idavion);
+ALTER TABLE vuelo
+ADD CONSTRAINT FK_vuelo_tarifa
+FOREIGN KEY (idtarifa) REFERENCES tarifa(idtarifa);
+ALTER TABLE vuelo
+ADD CONSTRAINT FK_vuelo_aeropuerto
+FOREIGN KEY (idaeropuerto) REFERENCES aeropuerto(idaeropuerto);
+create table PAGO(
+idpago int not null primary key ,
+idreserva int not null,
+fecha date not null,
+idpasajero char(10) not null,
+monto int not null,
+tipo_comprobante varchar(50) null,
+num_comprobante varchar(50) null,
+impuesto decimal (5,2) not null
+);
+ALTER TABLE pago
+ADD CONSTRAINT FK_pago_pasajero
+FOREIGN KEY (idpasajero) REFERENCES pasajero (idpasajero);
+ALTER TABLE pago
+ADD CONSTRAINT fk_pago_reserva
+FOREIGN KEY (idreserva) REFERENCES reserva(idreserva);
