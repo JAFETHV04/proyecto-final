@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+ 
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">REGISTRO DE PAISES</a>
+    </nav>
+
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-7">
+                <a href="/crearPais" class="btn btn-outline-info"><i class='bx bxs-edit'>Crear</i></a>
+                <table class="table table-borbered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">CODIGO</th>
+                            <th scope="col">NOMBRE</th>
+                                                     
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <% results.forEach((PAIS)=> { %>                                     
+                         <tr>
+                            <td><%= PAIS.idpais%></td>
+                            <td><%= PAIS.nombre%></td>
+                           
+                            <td>
+                                <a href="/actualizarEmpresa/<%= PAIS.idpais %>" class="btn btn-outline-info"><i class='bx bxs-edit'></i>Actualizar</a>
+                                <a href="/delete/<%= PAIS.idpais %>" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i>Eliminar</a>
+                            </td>                          
+
+                        </tr>
+                    <% }) %>
+                    </tbody>
+                   
+
+
+                    
+                 </table>
+
+            </div>
+            
+        </div>
+    </div>
+    
+   
+</body>
+</html>
+
+
+
+
+

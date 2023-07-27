@@ -9,7 +9,9 @@
   "author": "Proyecto-final",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.0",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
   }
 }
