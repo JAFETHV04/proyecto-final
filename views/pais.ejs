@@ -9,6 +9,13 @@
 </head>
 <body>
 
+    <div class="mb-3">
+        <br><br>
+        <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg"
+       placeholder="Digite el pais" />
+        <span id="buscar_resultado"></span>
+        </div> 
+
     <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand">REGISTRO DE PAISES</a>
     </nav>
@@ -16,25 +23,29 @@
 
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-7">
-                <a href="/crearPais" class="btn btn-outline-info"><i class='bx bxs-edit'>Crear</i></a>
-                <table class="table table-borbered table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">CODIGO</th>
-                            <th scope="col">NOMBRE</th>
-                                                     
+            <div class="col-md-10">
+                <a href="/crearpais" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+                <table class="table table-light table-striped">
+                    <thead class="thead-light">
+                        <tr class="table-dark">
+                           
+                            <th scope="col">CODIGO</th> 
+                            <th scope="col">NOMBRE</th>      
                         </tr>
                     </thead>
                     <tbody>
-                     <% results.forEach((PAIS)=> { %>                                     
+                        
+                     <% results.forEach((pais)=> { %>                                     
                          <tr>
-                            <td><%= PAIS.idpais%></td>
-                            <td><%= PAIS.nombre%></td>
-                           
+                            <td class="table-light"><%= pais.idpais%></td>
+                            <td class="table-light"><%= pais.nombre%></td>
                             <td>
-                                <a href="/actualizarEmpresa/<%= PAIS.idpais %>" class="btn btn-outline-info"><i class='bx bxs-edit'></i>Actualizar</a>
-                                <a href="/delete/<%= PAIS.idpais %>" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i>Eliminar</a>
+                               
+                                <a href="/editarpais/<%= pais.idpais%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/deletepais/<%= pais.nombre%>" class="btn btn-danger">Eliminar</a>
+
+                                
+                     
                             </td>                          
 
                         </tr>
@@ -54,6 +65,60 @@
    
 </body>
 </html>
+
+<script>
+
+    function cargar_pais(query = '')
+    {
+    fetch('/get_pais?buscar_query='+query+'').then(function(response){ return response.json();
+    }).then(function(responseData){
+    var html = '<ul class="list-group">'; if(responseData.length > 0)
+    {
+    for(var count = 0; count < responseData.length; count++)
+    {
+    var regular_expression = new RegExp('('+query+')', 'gi');
+    
+    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].categorias.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+    }
+    }
+    else
+     
+    {
+    html += '<a href="#" class="list-group-item list-group-item-action disabled">Registro No Encontrado</a>'; } html += '</ul>';
+    
+    document.getElementById('buscar_resultado').innerHTML = html;
+    
+    });
+    }
+    
+    var buscar_elemento = document.getElementById("autocompleta_busqueda"); buscar_elemento.onkeyup = function(){
+    var query = buscar_elemento.value;
+    
+    cargar_pais(query);
+    
+    };
+    
+    buscar_elemento.onfocus = function(){ var query = buscar_elemento.value;
+    cargar_pais(query);
+    
+    };
+    
+    function cargar_texto(event)
+    {
+    var pais = event.textContent;
+    
+    console.log(pais);
+    
+    document.getElementById('autocompleta_busqueda').value = pais;
+    
+    document.getElementById('buscar_resultado').innerHTML = '';
+    }
+    
+    </script>
+    
+   
+
+
 
 
 
