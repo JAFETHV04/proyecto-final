@@ -1,4 +1,5 @@
 const conexion = require('../database/bd');
+
 //GUARDAR un REGISTRO
 exports.guardarpais = (req, res)=>{
     const idpais = req.body.idpais;

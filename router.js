@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const conexion = require('./database/bd');
-
+//////PAIS////////////
 router.get('/', (req, res)=>{ 
     res.render('home.ejs'); 
    })
@@ -57,6 +57,7 @@ router.get('/PAIS/:idpais', (req,res)=>{
 const pais = require('./controller/pais');
   router.post('/guardarpais', pais.guardarpais);
   router.post('/actualizapais', pais.actualizapais);
-
+  
+//////////////PASAJERO///////////////
 
    module.exports = router;
