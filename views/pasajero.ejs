@@ -37,14 +37,14 @@
                     Administracion
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/asiento">ASIENTO</a></li>
+                    <li><a class="dropdown-item" href="#">ASIENTO</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/tarifa">TARIFA</a></li>
+                    <li><a class="dropdown-item" href="#">TARIFA</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/reserva">RESERVA</a></li>
+                    <li><a class="dropdown-item" href="#">RESERVA</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/vuelo">VUELO</a></li>
+                    <li><a class="dropdown-item" href="#">VUELO</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -57,12 +57,12 @@
                     <li><a class="dropdown-item" href="/pasajero">PASAJERO</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aeropuerto">AEROPUERTO</a></li>
+                    <li><a class="dropdown-item" href="#">AEROPUERTO</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aerolinea">AEROLINA</a></li>
+                    <li><a class="dropdown-item" href="/pais">AEROLINA</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/avion">AVION</a></li>
+                    <li><a class="dropdown-item" href="/pais">AVION</a></li>
                     <li><hr class="dropdown-divider"></li>
 
                   </ul>
@@ -82,37 +82,56 @@
     <div class="mb-3">
         <br><br>
         <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg"
-       placeholder="Digite el pais" />
+       placeholder="Digite el pasajero que desee" />
         <span id="buscar_resultado"></span>
         </div> 
 
     <nav class="navbar navbar-dark bg-dark">
-        <a href="/" class="navbar-brand">REGISTRO DE PAISES</a>
+        <a href="/" class="navbar-brand">REGISTRO DE PASAJERO</a>
     </nav>
 
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-10">
-                <a href="/crearpais" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+                <a href="/crearpasajero" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
                 <table class="table table-light table-striped">
                     <thead class="thead-light">
                         <tr class="table-dark">
                            
                             <th scope="col">CODIGO</th> 
-                            <th scope="col">NOMBRE</th>      
+                            <th scope="col">NOMBRE</th>     
+                            <th scope="col">PAPA PATERNO</th> 
+                            <th scope="col">MAMA MATERNO</th>
+                            <th scope="col">DOCUMENTO</th>
+                            <th scope="col">NUM. DOCUMENTO</th>  
+                            <th scope="col">NOMBRE</th>   
+                            <th scope="col">FECHA NACIMIENTO</th>
+                            <th scope="col">COD. PAIS</th>
+                            <th scope="col">TELEFONO</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">CLAVE</th>                         
                         </tr>
                     </thead>
                     <tbody>
                         
-                     <% results.forEach((pais)=> { %>                                     
+                     <% results.forEach((PASAJERO)=> { %>                                     
                          <tr>
-                            <td class="table-light"><%= pais.idpais%></td>
-                            <td class="table-light"><%= pais.nombre%></td>
+                            <td class="table-light"><%= PASAJERO.idpasajero%></td>
+                            <td class="table-light"><%= PASAJERO.nombre%></td>
+                            <td class="table-light"><%= PASAJERO.apaterno%></td>
+                            <td class="table-light"><%= PASAJERO.amaterno%></td>
+                            <td class="table-light"><%= PASAJERO.tipo_documento%></td>
+                            <td class="table-light"><%= PASAJERO.num_documento%></td>
+                            <td class="table-light"><%= PASAJERO.fecha_naciemiento%></td>
+                            <td class="table-light"><%= PASAJERO.idpais%></td>
+                            <td class="table-light"><%= PASAJERO.teléfono%></td>
+                            <td class="table-light"><%= PASAJERO.email%></td>
+                            <td class="table-light"><%= PASAJERO.clave%></td>
                             <td>
                                
-                                <a href="/editarpais/<%= pais.idpais%>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="/deletepais/<%= pais.nombre%>" class="btn btn-danger">Eliminar</a>
+                                <a href="/editarPasajero/<%= PASAJERO.idpasajero%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/deletepasajero/<%= PASAJERO.idpasajero%>" class="btn btn-danger">Eliminar</a>
 
                                 
                      
@@ -138,9 +157,9 @@
 
 <script>
 
-    function cargar_pais(query = '')
+    function cargar_pasajero(query = '')
     {
-    fetch('/get_pais?buscar_query='+query+'').then(function(response){ return response.json();
+    fetch('/get_pasajero?buscar_query='+query+'').then(function(response){ return response.json();
     }).then(function(responseData){
     var html = '<ul class="list-group">'; if(responseData.length > 0)
     {
@@ -164,33 +183,25 @@
     var buscar_elemento = document.getElementById("autocompleta_busqueda"); buscar_elemento.onkeyup = function(){
     var query = buscar_elemento.value;
     
-    cargar_pais(query);
+    cargar_pasajero(query);
     
     };
     
     buscar_elemento.onfocus = function(){ var query = buscar_elemento.value;
-    cargar_pais(query);
+    cargar_pasajero(query);
     
     };
     
     function cargar_texto(event)
     {
-    var pais = event.textContent;
+    var pasajero = event.textContent;
     
-    console.log(pais);
+    console.log(pasajero);
     
-    document.getElementById('autocompleta_busqueda').value = pais;
+    document.getElementById('autocompleta_busqueda').value = pasajero;
     
     document.getElementById('buscar_resultado').innerHTML = '';
     }
     
     </script>
     
-   
-
-
-
-
-
-
-

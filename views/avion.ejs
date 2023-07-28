@@ -82,37 +82,43 @@
     <div class="mb-3">
         <br><br>
         <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg"
-       placeholder="Digite el pais" />
+       placeholder="Digite el avion" />
         <span id="buscar_resultado"></span>
         </div> 
 
     <nav class="navbar navbar-dark bg-dark">
-        <a href="/" class="navbar-brand">REGISTRO DE PAISES</a>
+        <a href="/" class="navbar-brand">REGISTRO DE AVIONES</a>
     </nav>
 
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-10">
-                <a href="/crearpais" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+                <a href="/crearAvion" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
                 <table class="table table-light table-striped">
                     <thead class="thead-light">
                         <tr class="table-dark">
                            
                             <th scope="col">CODIGO</th> 
-                            <th scope="col">NOMBRE</th>      
+                            <th scope="col">CODIGO AEROLINEA</th> 
+                            <th scope="col">FABRICANTE</th>    
+                            <th scope="col">TIPO</th> 
+                            <th scope="col">CAPACIDAD</th>   
                         </tr>
                     </thead>
                     <tbody>
                         
-                     <% results.forEach((pais)=> { %>                                     
+                     <% results.forEach((AVION)=> { %>                                     
                          <tr>
-                            <td class="table-light"><%= pais.idpais%></td>
-                            <td class="table-light"><%= pais.nombre%></td>
+                            <td class="table-light"><%= AVION.idavion%></td>
+                            <td class="table-light"><%= AVION.idaerolinea%></td>
+                            <td class="table-light"><%= AVION.fabricante%></td>
+                            <td class="table-light"><%= AVION.tipo%></td>
+                            <td class="table-light"><%= AVION.capacidad%></td>
                             <td>
                                
-                                <a href="/editarpais/<%= pais.idpais%>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="/deletepais/<%= pais.nombre%>" class="btn btn-danger">Eliminar</a>
+                                <a href="/editarAvion/<%= AVION.idavion%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/deletepais/<%= AVION.idavion%>" class="btn btn-danger">Eliminar</a>
 
                                 
                      
@@ -138,9 +144,9 @@
 
 <script>
 
-    function cargar_pais(query = '')
+    function cargar_avion(query = '')
     {
-    fetch('/get_pais?buscar_query='+query+'').then(function(response){ return response.json();
+    fetch('/get_avion?buscar_query='+query+'').then(function(response){ return response.json();
     }).then(function(responseData){
     var html = '<ul class="list-group">'; if(responseData.length > 0)
     {
@@ -148,7 +154,7 @@
     {
     var regular_expression = new RegExp('('+query+')', 'gi');
     
-    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].categorias.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].avion.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
     }
     }
     else
@@ -164,22 +170,22 @@
     var buscar_elemento = document.getElementById("autocompleta_busqueda"); buscar_elemento.onkeyup = function(){
     var query = buscar_elemento.value;
     
-    cargar_pais(query);
+    cargar_avion(query);
     
     };
     
     buscar_elemento.onfocus = function(){ var query = buscar_elemento.value;
-    cargar_pais(query);
+    cargar_avion(query);
     
     };
     
     function cargar_texto(event)
     {
-    var pais = event.textContent;
+    var avion = event.textContent;
     
-    console.log(pais);
+    console.log(avion);
     
-    document.getElementById('autocompleta_busqueda').value = pais;
+    document.getElementById('autocompleta_busqueda').value = avion;
     
     document.getElementById('buscar_resultado').innerHTML = '';
     }
@@ -187,10 +193,3 @@
     </script>
     
    
-
-
-
-
-
-
-
