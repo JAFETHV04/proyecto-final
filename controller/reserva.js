@@ -7,7 +7,7 @@ exports.guardarreserva = (req, res)=>{
     const fecha = req.body.fecha;
     const observacion = req.body.observacion;
     
-    conexion.query('INSERT INTO RESERVA SET ?',{idreserva:idreserva, costo:costo,fecha:fecha,observacion:observacion}, (error, results)=>{
+    conexion.query('INSERT INTO reserva SET ?',{idreserva:idreserva, costo:costo,fecha:fecha,observacion:observacion}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -25,7 +25,7 @@ exports.actualizareserva = (req, res)=>{
     const observacion = req.body.observacion;
     
     
-    conexion.query('UPDATE RESERVA SET ? WHERE idreserva =?', [{idreserva:idreserva},costo,fecha,observacion ], (error, results)=>{
+    conexion.query('UPDATE reserva SET ? WHERE idreserva =?', [{idreserva:idreserva},costo,fecha,observacion ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

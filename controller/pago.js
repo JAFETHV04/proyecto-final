@@ -10,7 +10,7 @@ exports.guardarpago = (req, res)=>{
     const tipo_comprobante = req.body.tipo_comprobante;
     const num_comprobante = req.body.num_comprobante;
     const impuesto = req.body.impuesto;
-    conexion.query('INSERT INTO PAGO SET ?',{idpago:idpago, idreserva:idreserva,fecha:fecha,idpasajero:idpasajero,monto:monto,tipo_comprobante:tipo_comprobante,num_comprobante:num_comprobante,impuesto:impuesto}, (error, results)=>{
+    conexion.query('INSERT INTO pago SET ?',{idpago:idpago, idreserva:idreserva,fecha:fecha,idpasajero:idpasajero,monto:monto,tipo_comprobante:tipo_comprobante,num_comprobante:num_comprobante,impuesto:impuesto}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -28,7 +28,7 @@ exports.actualizapago = (req, res)=>{
     const tipo = req.body.tipo;
     const capacidad = req.body.capacidad;
     
-    conexion.query('UPDATE PAGO SET ? WHERE idpago =?', [{idpago:idpago},idreserva,fecha,idpasajero,monto,tipo_comprobante,num_comprobante,impuesto ], (error, results)=>{
+    conexion.query('UPDATE pago SET ? WHERE idpago =?', [{idpago:idpago},idreserva,fecha,idpasajero,monto,tipo_comprobante,num_comprobante,impuesto ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

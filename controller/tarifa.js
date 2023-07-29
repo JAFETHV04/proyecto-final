@@ -7,7 +7,7 @@ exports.guardartarifa = (req, res)=>{
     const precio = req.body.precio;
     const impuesto = req.body.impuesto;
     
-    conexion.query('INSERT INTO TARIFA SET ?',{idtarifa:idtarifa, letra:letra,precio:precio,impuesto:impuesto}, (error, results)=>{
+    conexion.query('INSERT INTO tarifa SET ?',{idtarifa:idtarifa, letra:letra,precio:precio,impuesto:impuesto}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -25,7 +25,7 @@ exports.actualizatarifa = (req, res)=>{
     const impuesto = req.body.impuesto;
     
     
-    conexion.query('UPDATE TARIFA SET ? WHERE idtarifa =?', [{idtarifa:idtarifa},letra,precio,impuesto ], (error, results)=>{
+    conexion.query('UPDATE tarifa SET ? WHERE idtarifa =?', [{idtarifa:idtarifa},letra,precio,impuesto ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

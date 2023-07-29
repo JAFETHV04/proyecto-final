@@ -7,7 +7,7 @@ exports.guardaraerolinea = (req, res)=>{
     const nombre = req.body.nombre;
     
     
-    conexion.query('INSERT INTO AEROLINEA SET ?',{idaerolinea:idaerolinea, ruc:ruc,nombre:nombre}, (error, results)=>{
+    conexion.query('INSERT INTO aerolinea SET ?',{idaerolinea:idaerolinea, ruc:ruc,nombre:nombre}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -24,7 +24,7 @@ exports.actualizaaerolinea = (req, res)=>{
     const nombre = req.body.nombre;
     
     
-    conexion.query('UPDATE AEROLINEA SET ? WHERE idaerolinea =?', [{nombre:nombre},idaerolinea,ruc ], (error, results)=>{
+    conexion.query('UPDATE aerolinea SET ? WHERE idaerolinea =?', [{nombre:nombre},idaerolinea,ruc ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

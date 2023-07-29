@@ -7,7 +7,7 @@ exports.guardarasiento = (req, res)=>{
     const fila = req.body.fila;
     
     
-    conexion.query('INSERT INTO ASIENTO SET ?',{idasiento:idasiento, letra:letra,fila:fila}, (error, results)=>{
+    conexion.query('INSERT INTO asiento SET ?',{idasiento:idasiento, letra:letra,fila:fila}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -24,7 +24,7 @@ exports.actualizaasiento = (req, res)=>{
     const fila = req.body.fila;
     
     
-    conexion.query('UPDATE ASIENTO SET ? WHERE idasiento =?', [{idasiento:idasiento},letra,fila ], (error, results)=>{
+    conexion.query('UPDATE asiento SET ? WHERE idasiento =?', [{idasiento:idasiento},letra,fila ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

@@ -5,7 +5,7 @@ exports.guardarpais = (req, res)=>{
     const idpais = req.body.idpais;
     const nombre = req.body.nombre;
    
-    conexion.query('INSERT INTO PAIS SET ?',{idpais:idpais, nombre:nombre}, (error, results)=>{
+    conexion.query('INSERT INTO pais SET ?',{idpais:idpais, nombre:nombre}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -20,7 +20,7 @@ exports.actualizapais = (req, res)=>{
     const idpais = req.body.idpais;
     const nombre = req.body.nombre;
     
-    conexion.query('UPDATE PAIS SET ? WHERE idpais =?', [{nombre:nombre},idpais ], (error, results)=>{
+    conexion.query('UPDATE pais SET ? WHERE idpais =?', [{nombre:nombre},idpais ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

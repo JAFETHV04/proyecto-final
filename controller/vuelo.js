@@ -8,7 +8,7 @@ exports.guardarvuelo = (req, res)=>{
     const idavion = req.body.idavion;
     const idtarifa = req.body.idtarifa;
     
-    conexion.query('INSERT INTO VUELO SET ?',{idasiento:idasiento, idaeropuerto:idaeropuerto,idreserva:idreserva,idavion:idavion,idtarifa:idtarifa}, (error, results)=>{
+    conexion.query('INSERT INTO vuelo SET ?',{idasiento:idasiento, idaeropuerto:idaeropuerto,idreserva:idreserva,idavion:idavion,idtarifa:idtarifa}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
@@ -27,7 +27,7 @@ exports.actualizarvuelo = (req, res)=>{
     const idtarifa = req.body.idtarifa;
     
     
-    conexion.query('UPDATE VUELO SET ? WHERE idasiento =?', [{idasiento:idasiento},idaeropuerto,idreserva,idavion,idtarifa ], (error, results)=>{
+    conexion.query('UPDATE vuelo SET ? WHERE idasiento =?', [{idasiento:idasiento},idaeropuerto,idreserva,idavion,idtarifa ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
