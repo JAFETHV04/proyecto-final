@@ -13,12 +13,12 @@ exports.guardarpasajero = (req, res)=>{
     const teléfono = req.body.teléfono;
     const email = req.body.fecha_naciemiento;
     const clave = req.body.clave;
-    conexion.query('INSERT INTO pasajero SET ?',{idpasajero:idpasajero, nombre:nombre,apaterno:apaterno,amaterno:amaterno,tipo_documento:tipo_documento,num_documento:num_documento,fecha_naciemiento:fecha_naciemiento,idpais:idpais,teléfono:teléfono,email:email,clave:clave}, (error, results)=>{
+    conexion.query('INSERT INTO PASAJERO SET ?',{idpasajero:idpasajero, nombre:nombre,apaterno:apaterno,amaterno:amaterno,tipo_documento:tipo_documento,num_documento:num_documento,fecha_naciemiento:fecha_naciemiento,idpais:idpais,teléfono:teléfono,email:email,clave:clave}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/pasajero');         
+            res.redirect('/PASAJERO');         
         }
 });
 };
@@ -34,14 +34,14 @@ exports.actualizapasajero = (req, res)=>{
     const fecha_naciemiento = req.body.fecha_naciemiento;
     const idpais= req.body.idpais;
     const teléfono = req.body.teléfono;
-    const email = req.body.fecha_naciemiento;
+    const email = req.body.email;
     const clave = req.body.clave;
     
-    conexion.query('UPDATE pasajero SET ? WHERE idpasajero =?', [{nombre:nombre},idpasajero,apaterno,amaterno,tipo_documento,num_documento,fecha_naciemiento,idpais,teléfono,email,clave ], (error, results)=>{
+    conexion.query('UPDATE PASAJERO SET ? WHERE idpasajero =?', [{nombre:nombre,apaterno,amaterno,tipo_documento,num_documento,fecha_naciemiento,idpais,teléfono,email,clave},idpasajero], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/pasajero');         
+            res.redirect('/PASAJERO');         
         }
 });
 };

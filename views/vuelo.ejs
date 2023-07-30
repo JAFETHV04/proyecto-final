@@ -37,14 +37,14 @@
                     Administracion
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/asiento">ASIENTO</a></li>
+                    <li><a class="dropdown-item" href="/ASIENTO">ASIENTO</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/tarifa">TARIFA</a></li>
+                    <li><a class="dropdown-item" href="/TARIFA">TARIFA</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/reserva">RESERVA</a></li>
+                    <li><a class="dropdown-item" href="/RESERVA">RESERVA</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/vuelo">VUELO</a></li>
+                    <li><a class="dropdown-item" href="/VUELO">VUELO</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,17 +52,17 @@
                     Consultas
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/pais">PAIS</a></li>
+                    <li><a class="dropdown-item" href="/PAIS">PAIS</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/pasajero">PASAJERO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aeropuerto">AEROPUERTO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aerolinea">AEROLINA</a></li>
+                    <li><a class="dropdown-item" href="/PASAJERO">PASAJERO</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/avion">AVION</a></li>
+                    <li><a class="dropdown-item" href="/AEROPUERTO">AEROPUERTO</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AEROLINEA">AEROLINA</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AVION">AVION</a></li>
                     <li><hr class="dropdown-divider"></li>
 
                   </ul>
@@ -79,22 +79,24 @@
         </nav>
   
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <div class="mb-3">
-        <br><br>
-        <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg"
-       placeholder="Digite el pais" />
-        <span id="buscar_resultado"></span>
-        </div> 
+    
 
     <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand">REGISTRO DE VUELOS</a>
     </nav>
-
+    <div class="container">
+      <div class="row mt-5">
+        <br>
+              <div class="mb-3">
+                <br><br>
+                <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg" placeholder="Digite el PAIS" />
+                <span id="buscar_resultado"></span>
+                </div>
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-10">
-                <a href="/crearVuelo" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+                <a href="/crearvuelo" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
                 <table class="table table-light table-striped">
                     <thead class="thead-light">
                         <tr class="table-dark">
@@ -117,8 +119,8 @@
                             <td class="table-light"><%= VUELO.idtarifa%></td>
                             <td>
                                
-                                <a href="/editarVuelo/<%= VUELO.idasiento%>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="/deleteVuelo/<%= VUELO.idasiento%>" class="btn btn-danger">Eliminar</a>
+                                <a href="/editarvuelo/<%= VUELO.idasiento%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/deletevuelo/<%= VUELO.idasiento%>" class="btn btn-danger">Eliminar</a>
 
                                 
                      
@@ -146,7 +148,7 @@
 
     function cargar_vuelo(query = '')
     {
-    fetch('/get_VUELO?buscar_query='+query+'').then(function(response){ return response.json();
+    fetch('/get_vuelo?buscar_query='+query+'').then(function(response){ return response.json();
     }).then(function(responseData){
     var html = '<ul class="list-group">'; if(responseData.length > 0)
     {
@@ -154,7 +156,7 @@
     {
     var regular_expression = new RegExp('('+query+')', 'gi');
     
-    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].vuelo.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].codigo.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
     }
     }
     else
@@ -181,11 +183,11 @@
     
     function cargar_texto(event)
     {
-    var vuelo = event.textContent;
+    var codigo = event.textContent;
     
-    console.log(vuelo);
+    console.log(codigo);
     
-    document.getElementById('autocompleta_busqueda').value = vuelo;
+    document.getElementById('autocompleta_busqueda').value = codigo;
     
     document.getElementById('buscar_resultado').innerHTML = '';
     }

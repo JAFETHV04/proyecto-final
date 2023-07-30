@@ -10,7 +10,7 @@ exports.guardarpais = (req, res)=>{
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/pais');         
+            res.redirect('/PAIS');         
         }
 });
 };
@@ -20,11 +20,11 @@ exports.actualizapais = (req, res)=>{
     const idpais = req.body.idpais;
     const nombre = req.body.nombre;
     
-    conexion.query('UPDATE pais SET ? WHERE idpais =?', [{nombre:nombre},idpais ], (error, results)=>{
+    conexion.query('UPDATE PAIS SET ? WHERE idpais =?', [{nombre:nombre},idpais ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/pais');         
+            res.redirect('/PAIS');         
         }
 });
 };

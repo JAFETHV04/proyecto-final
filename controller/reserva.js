@@ -12,7 +12,7 @@ exports.guardarreserva = (req, res)=>{
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/reserva');         
+            res.redirect('/RESERVA');         
         }
 });
 };
@@ -25,11 +25,11 @@ exports.actualizareserva = (req, res)=>{
     const observacion = req.body.observacion;
     
     
-    conexion.query('UPDATE reserva SET ? WHERE idreserva =?', [{idreserva:idreserva},costo,fecha,observacion ], (error, results)=>{
+    conexion.query('UPDATE RESERVA SET ? WHERE idreserva =?', [{costo:costo,fecha:fecha,observacion:observacion},idreserva], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/reserva');         
+            res.redirect('/RESERVA');         
         }
 });
 };
