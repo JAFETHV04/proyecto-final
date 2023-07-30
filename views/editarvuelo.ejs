@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <title>Actualizar Sucursales</title>
+    <style>
+           body {
+background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+min-height: 80vh;
+display: ruby-text-container;
+justify-content: center;
+align-items: center;
+font-style:oblique;
+
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+    <nav class="navbar navbar-dark">      
+      </nav>            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">VUELOS</a>
+              </li>                            
+            </ul>            
+          </div>
+        </div>
+      </nav>
+      <% if (VUELO) { %>
+      <div class="container mt-4">          
+          <div class="card border-secondary">  
+                <div class="card-header">Actualizar Registro</div>
+                <div class="card-body">
+                    <form action="/actualizarvuelo" method="POST">
+                         <input type="idasiento" name="idasiento" value="<%= VUELO.idasiento%>" hidden>
+                         <div class="mb-3">
+                            <label for="idasiento" class="form-label">Codigo de asiento</label>
+                              <input type="text" class="form-control" id="idasiento" name="idasiento" tabindex="1" value="<%= VUELO.idasiento%>">
+                            </div> 
+                        <div class="mb-3">
+                        <label for="idaeropuerto" class="form-label">Codigo de aeropuerto</label>
+                          <input type="text" class="form-control" id="idaeropuerto" name="idaeropuerto" tabindex="1" value="<%= VUELO.idaeropuerto%>">
+                        </div> 
+                        <div class="mb-3">
+                            <label for="idreserva" class="form-label">Codigo de reserva</label>
+                              <input type="text" class="form-control" id="idreserva" name="idreserva" tabindex="1" value="<%= VUELO.idreserva%>">
+                            </div>  
+                            <div class="mb-3">
+                                <label for="idavion" class="form-label">Codigo de Avion</label>
+                                  <input type="text" class="form-control" id="idavion" name="idavion" tabindex="1" value="<%= VUELO.idavion%>">
+                                </div> 
+                                <div class="mb-3">
+                                    <label for="idtarifa" class="form-label">Codigo de tarifa</label>
+                                      <input type="text" class="form-control" id="idtarifa" name="idtarifa" tabindex="1" value="<%= VUELO.idtarifa%>">
+                                    </div>                                
+                                                                                       
+                        <button type="submit" class="btn btn-info" tabindex="5">Actualizar</button>
+                        <a href="/VUELO" class="btn btn-danger">Cancelar</a>
+                    </form>      
+                </div>
+            </div>     
+      </div>
+      <% } %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html

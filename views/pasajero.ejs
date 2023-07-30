@@ -37,14 +37,17 @@
                     Administracion
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">ASIENTO</a></li>
+                    <li><a class="dropdown-item" href="ASIENTO">ASIENTO</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">TARIFA</a></li>
+                    <li><a class="dropdown-item" href="TARIFA">TARIFA</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">RESERVA</a></li>
+                    <li><a class="dropdown-item" href="RESERVA">RESERVA</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">VUELO</a></li>
+                    <li><a class="dropdown-item" href="VUELO">VUELO</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/PAGO">PAGOS</a></li>
+                    <li><hr class="dropdown-divider"></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,17 +55,17 @@
                     Consultas
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/pais">PAIS</a></li>
+                    <li><a class="dropdown-item" href="/PAIS">PAIS</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/pasajero">PASAJERO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">AEROPUERTO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/pais">AEROLINA</a></li>
+                    <li><a class="dropdown-item" href="/PASAJERO">PASAJERO</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/pais">AVION</a></li>
+                    <li><a class="dropdown-item" href="AEROPUERTO">AEROPUERTO</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AEROLINEA">AEROLINA</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AVION">AVION</a></li>
                     <li><hr class="dropdown-divider"></li>
 
                   </ul>
@@ -132,7 +135,7 @@
                             <td class="table-light"><%= PASAJERO.clave%></td>
                             <td>
                                
-                                <a href="/editarPasajero/<%= PASAJERO.idpasajero%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/editarpasajero/<%= PASAJERO.idpasajero%>" class="btn btn-info btn-sm">Editar</a>
                                 <a href="/deletepasajero/<%= PASAJERO.idpasajero%>" class="btn btn-danger">Eliminar</a>
 
                                 

@@ -13,7 +13,7 @@ exports.guardarvuelo = (req, res)=>{
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/vuelo');         
+            res.redirect('/VUELO');         
         }
 });
 };
@@ -27,11 +27,11 @@ exports.actualizarvuelo = (req, res)=>{
     const idtarifa = req.body.idtarifa;
     
     
-    conexion.query('UPDATE VUELO SET ? WHERE idasiento =?', [{idasiento:idasiento},idaeropuerto,idreserva,idavion,idtarifa ], (error, results)=>{
+    conexion.query('UPDATE VUELO SET ? WHERE idasiento =?', [{idasiento:idasiento,idaeropuerto:idaeropuerto,idreserva:idreserva,idavion:idavion,idtarifa:idtarifa}, ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/vuelo');         
+            res.redirect('/VUELO');         
         }
 });
 };

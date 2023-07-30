@@ -12,7 +12,7 @@ exports.guardarasiento = (req, res)=>{
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/asiento');         
+            res.redirect('/ASIENTO');         
         }
 });
 };
@@ -24,11 +24,11 @@ exports.actualizaasiento = (req, res)=>{
     const fila = req.body.fila;
     
     
-    conexion.query('UPDATE ASIENTO SET ? WHERE idasiento =?', [{idasiento:idasiento},letra,fila ], (error, results)=>{
+    conexion.query('UPDATE ASIENTO SET ? WHERE idasiento =?', [{letra:letra,fila:fila}, idasiento], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/asiento');         
+            res.redirect('/ASIENTO');         
         }
 });
 };

@@ -1,33 +1,31 @@
 const conexion = require('../database/bd');
 
-//GUARDAR un REGISTRO
-exports.guardaraeropuerto = (req, res)=>{
-    const idaeropuerto = req.body.idaeropuesto;
+exports.guardara = (req, res)=>{
+    const idaeropuerto = req.body.idaeropuerto;
     const nombre = req.body.nombre;
     const idpais = req.body.idpais;
-    
+   
     conexion.query('INSERT INTO AEROPUERTO SET ?',{idaeropuerto:idaeropuerto, nombre:nombre,idpais:idpais}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/aeropuerto');         
+            res.redirect('/AEROPUERTO');         
         }
 });
 };
 
 //ACTUALIZAR un REGISTRO
-exports.actualizaaeropuerto = (req, res)=>{
-    const idaeropuerto = req.body.idaeropuesto;
+exports.actualizaa = (req, res)=>{
+    const idaeropuerto = req.body.idaeropuerto;
     const nombre = req.body.nombre;
     const idpais = req.body.idpais;
     
-    
-    conexion.query('UPDATE AEROPUERTO SET ? WHERE idaeropuerto =?', [{nombre:nombre},idaeropuesto,idpais ], (error, results)=>{
+    conexion.query('UPDATE AEROPUERTO SET ? WHERE idaeropuerto =?', [{nombre:nombre,idpais:idpais},idaeropuerto ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/aeropuerto');         
+            res.redirect('/AEROPUERTO');         
         }
 });
 };

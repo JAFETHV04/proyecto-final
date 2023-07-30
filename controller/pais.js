@@ -5,12 +5,12 @@ exports.guardarpais = (req, res)=>{
     const idpais = req.body.idpais;
     const nombre = req.body.nombre;
    
-    conexion.query('INSERT INTO PAIS SET ?',{idpais:idpais, nombre:nombre}, (error, results)=>{
+    conexion.query('INSERT INTO pais SET ?',{idpais:idpais, nombre:nombre}, (error, results)=>{
         if(error){
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/pais');         
+            res.redirect('/PAIS');         
         }
 });
 };
@@ -24,7 +24,7 @@ exports.actualizapais = (req, res)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/pais');         
+            res.redirect('/PAIS');         
         }
 });
 };

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <title>Actualizar Sucursales</title>
+    <style>
+           body {
+background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+min-height: 80vh;
+display: ruby-text-container;
+justify-content: center;
+align-items: center;
+font-style:oblique;
+
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+    <nav class="navbar navbar-dark">      
+      </nav>            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">PASAJEROS</a>
+              </li>                            
+            </ul>            
+          </div>
+        </div>
+      </nav>
+      <% if (PASAJERO) { %>
+      <div class="container mt-4">          
+          <div class="card border-secondary">  
+                <div class="card-header">Actualizar Registro</div>
+                <div class="card-body">
+                    <form action="/actualizapasajero" method="POST">
+                         <input type="idpasajero" name="idpasajero" value="<%= PASAJERO.idpasajero%>" hidden>
+                        <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1" value="<%= PASAJERO.nombre%>">
+                        </div> 
+                        <div class="mb-3">
+                            <label for="apaterno" class="form-label">Primer Apellido</label>
+                              <input type="text" class="form-control" id="apaterno" name="apaterno" tabindex="1" value="<%= PASAJERO.apaterno>">
+                            </div>  
+                            <div class="mb-3">
+                                <label for="amaterno" class="form-label">Segundo Apellido</label>
+                                  <input type="text" class="form-control" id="amaterno" name="amaterno" tabindex="1" value="<%= PASAJERO.amaterno>">
+                                </div> 
+                                
+                                <div class="mb-3">
+                                    <label for="tipo_documento" class="form-label">Tipo de documento</label>
+                                      <input type="text" class="form-control" id="tipo_documento" name="tipo_documento" tabindex="1" value="<%= PASAJERO.tipo_documento>">
+                                    </div>  
+                                    <div class="mb-3">
+                                        <label for="num_documento" class="form-label">Numero de documento</label>
+                                          <input type="text" class="form-control" id="num_documento" name="num_documento" tabindex="1" value="<%= PASAJERO.num_documento>">
+                                        </div>  
+                                        <div class="mb-3">
+                                            <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                                              <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" tabindex="1" value="<%= PASAJERO.fecha_nacimiento>">
+                                            </div>     
+                                            <div class="mb-3">
+                                                <label for="idpais" class="form-label">Id Pais</label>
+                                                  <input type="text" class="form-control" id="idpais" name="idpais" tabindex="1" value="<%= PASAJERO.idpais%>">
+                                                </div>  
+                                                <div class="mb-3">
+                                                    <label for="telefono" class="form-label">Telefono</label>
+                                                      <input type="text" class="form-control" id="telefono" name="telefono" tabindex="1" value="<%= PASAJERO.telefono>">
+                                                    </div>  
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">Email</label>
+                                                          <input type="text" class="form-control" id="email" name="email" tabindex="1" value="<%= PASAJERO.email>">
+                                                        </div>  
+                                                        <div class="mb-3">
+                                                            <label for="clave" class="form-label">Clave</label>
+                                                              <input type="text" class="form-control" id="clave" name="clave" tabindex="1" value="<%= PASAJERO.clave>">
+                                                            </div>                                       
+                        <button type="submit" class="btn btn-info" tabindex="5">Actualizar</button>
+                        <a href="/PASAJERO" class="btn btn-danger">Cancelar</a>
+                    </form>      
+                </div>
+            </div>     
+      </div>
+      <% } %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html

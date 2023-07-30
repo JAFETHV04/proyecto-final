@@ -12,7 +12,7 @@ exports.guardaraerolinea = (req, res)=>{
             console.log(error);
         }else{
             //console.log(results);   
-            res.redirect('/aerolinea');         
+            res.redirect('/AEROLINEA');         
         }
 });
 };
@@ -24,11 +24,11 @@ exports.actualizaaerolinea = (req, res)=>{
     const nombre = req.body.nombre;
     
     
-    conexion.query('UPDATE AEROLINEA SET ? WHERE idaerolinea =?', [{nombre:nombre},idaerolinea,ruc ], (error, results)=>{
+    conexion.query('UPDATE AEROLINEA SET ? WHERE idaerolinea =?', [{nombre:nombre, ruc:ruc},idaerolinea ], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/aerolinea');         
+            res.redirect('/AEROLINEA');         
         }
 });
 };

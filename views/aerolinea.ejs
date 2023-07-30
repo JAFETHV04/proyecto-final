@@ -37,14 +37,14 @@
                     Administracion
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/asiento">ASIENTO</a></li>
+                    <li><a class="dropdown-item" href="/ASIENTO">ASIENTO</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/tarifa">TARIFA</a></li>
+                    <li><a class="dropdown-item" href="/TARIFA">TARIFA</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/reserva">RESERVA</a></li>
+                    <li><a class="dropdown-item" href="/RESERVA">RESERVA</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/vuelo">VUELO</a></li>
+                    <li><a class="dropdown-item" href="/VUELO">VUELO</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,17 +52,20 @@
                     Consultas
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/pais">PAIS</a></li>
+                    <li><a class="dropdown-item" href="/PAIS">PAIS</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/pasajero">PASAJERO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aeropuerto">AEROPUERTO</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/aerolinea">AEROLINEA</a></li>
+                    <li><a class="dropdown-item" href="/PASAJERO">PASAJERO</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/avion">AVION</a></li>
+                    <li><a class="dropdown-item" href="/AEROPUERTO">AEROPUERTO</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AEROLINEA">AEROLINEA</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/AVION">AVION</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/PAGO">PAGOS</a></li>
                     <li><hr class="dropdown-divider"></li>
 
                   </ul>
@@ -90,14 +93,16 @@
         <br>
               <div class="mb-3">
                 <br><br>
-                <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg" placeholder="Digite el PAIS" />
+
+                <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg" placeholder="Digite la aerolinea" />
+
                 <span id="buscar_resultado"></span>
                 </div>
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-10">
-                <a href="/crearAerolinea" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+                <a href="/crearaerolinea" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
                 <table class="table table-light table-striped">
                     <thead class="thead-light">
                         <tr class="table-dark">
@@ -109,16 +114,16 @@
                     </thead>
                     <tbody>
                         
-                     <% results.forEach((aerolinea)=> { %>                                     
+                     <% results.forEach((AEROLINEA)=> { %>                                     
                          <tr>
                             <td class="table-light"><%= AEROLINEA.idaerolinea%></td>
-                            <td class="table-light"><%= AEROLINEA.ruc></td>
+                            <td class="table-light"><%= AEROLINEA.ruc%></td>
                             <td class="table-light"><%= AEROLINEA.nombre%></td>
                             
                             <td>
                                
-                                <a href="/editarAerolinea/<%= AEROLINEA.idaerolinea%>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="/deleteAerolinea/<%= AEROLINEA.idaerolinea%>" class="btn btn-danger">Eliminar</a>
+                                <a href="/editaraerolinea/<%= AEROLINEA.idaerolinea%>" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/deleteaerolinea/<%= AEROLINEA.idaerolinea%>" class="btn btn-danger">Eliminar</a>
 
                                 
                      
@@ -191,4 +196,5 @@
     }
     
     </script>
+    
     
