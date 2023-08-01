@@ -12,4 +12,4 @@ const conexion = mysql.createConnection({
    }
     console.log('¡Conectado a la Base de Datos!');
   });
- module.exports = conexion;
+  module.exports = conexion;
