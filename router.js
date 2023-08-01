@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const conexion = require('./database/bd');
+
+
+////   ACCESO AL SISTEMA/////
 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express', session : req.session });
@@ -60,24 +64,154 @@ router.get('/', function(req, res, next) {
       response.redirect("/");
   
   });
-  router.get('/home', (req, res)=>{ 
+
+
+router.get('/home', (req, res)=>{     
+    res.render('home.ejs');               
+})
+
+
+
+
+
+
+//////PAIS////////////
+router.get('/PAIS', (req, res)=>{     
+    conexion.query('select *from PAIS',(error, results)=>{
+        if(error){
+            throw error;
+        } else {                       
+            res.render('../views/pais.ejs', {results:results});
+          
+        }   
+    })
+    
+
+})
+
+
+
+
+router.get('/crearpais', (req,res)=>{
+    res.render('../views/crearpais.ejs');
+})
+
+router.get('/editarpais/:idpais', (req,res)=>{    
+    const idpais = req.params.idpais;
+    conexion.query('select  *from PAIS WHERE idpais=?',[idpais] , (error, results) => {
+        if (error) {
+            throw error;
+        }else{            
+            res.render('../views/editarpais.ejs', {PAIS:results[0]});            
+        }        
+    });
+});
+
+
+router.get('/deletepais/:idpais', (req, res) => {
+    const idpais = req.params.idpais;
+    conexion.query('DELETE FROM PAIS WHERE idpais = ?',[idpais], (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{           
+            res.redirect('/PAIS');         
+        }
+    })
+});
+
+
+router.get('/get_pais', function(request, response, next){
+
+    var buscar_query = request.query.buscar_query;
+
+    var query = `
+    SELECT pais FROM PAIS 
+    WHERE PAIS LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
+
+    conexion.query(query, function(error, data){
+
+        response.json(data);
+
+    });
+
+});
+
+
+const PAIS = require('./controller/pais');
+router.post('/guardarpais', PAIS.guardarpais);
+router.post('/actualizapais', PAIS.actualizapais);
+  
+//////////////PASAJERO///////////////
+router.get('/', (req, res)=>{ 
     res.render('home.ejs'); 
    })
 
-//////PAIS////////////
-
-
-   router.get('/get_PAIS', function(request, response, next){
+   router.get('/get_PASAJERO', function(request, response, next){
     var buscar_query = request.query.buscar_query;
-    var query = `
-    SELECT PAIS FROM PAIS WHERE PAIS LIKE '%${buscar_query}%'
+    var query = `SELECT PASAJERO FROM PASAJERO WHERE PASAJERO LIKE '%${buscar_query}%'
     LIMIT 1 `;
     conexion.query(query, function(error, data){
     response.json(data);
     });
     });
-router.get('/PAIS', (req, res)=>{     
-    conexion.query('SELECT * FROM PAIS',(error, results)=>{
+router.get('/PASAJERO', (req, res)=>{     
+    conexion.query('SELECT * FROM PASAJERO',(error, results)=>{
+        if(error){
+            throw error;
+        } else {                       
+            res.render('../views/pasajero.ejs', {results:results});            
+        }   
+    })
+    
+
+})
+
+router.get('/crearpasajero', (req,res)=>{
+    res.render('../views/crearpasajero.ejs');
+})
+
+router.get('/deletepasajero/:idpasajero', (req, res) => {
+    const idpasajero = req.params.idpasajero;
+    conexion.query('DELETE FROM PASAJERO WHERE idpasajero = ?',[idpasajero], (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{           
+            res.redirect('/PASAJERO');         
+        }
+    })
+});
+
+router.get('/editarpasajero/:idpasajero', (req,res)=>{    
+    const idpasajero = req.params.idpasajero;
+    conexion.query('SELECT * FROM PASAJERO WHERE idpasajero=?',[idpasajero] , (error, results) => {
+        if (error) {
+            throw error;
+        }else{            
+            res.render('../views/editarpasajero.ejs', {PASAJERO:results[0]});            
+        }        
+    });
+});
+
+const PASAJERO = require('./controller/pasajero');
+  router.post('/guardarpasajero', PASAJERO.guardarpasajero);
+  router.post('/actualizapasajero', PASAJERO.actualizapasajero);
+
+//////////////AEROPUERTO////////////
+router.get('/', (req, res)=>{ 
+    res.render('home.ejs'); 
+   })
+
+   router.get('/get_AEROPUERTO', function(request, response, next){
+    var buscar_query = request.query.buscar_query;
+    var query = `SELECT AEROPUERTO FROM AEROPUERTO WHERE AEROPUERTO LIKE '%${buscar_query}%'
+    LIMIT 1 `;
+    conexion.query(query, function(error, data){
+    response.json(data);
+    });
+    });
+router.get('/AEROPUERTO', (req, res)=>{     
+    conexion.query('SELECT * FROM AEROPUERTO',(error, results)=>{
         if(error){
             throw error;
         } else {                       
@@ -464,6 +598,8 @@ router.get('/get_AEROLINEA', (req, res) => {
     });
   });
   
-//////////////PASAJERO///////////////
-
-   module.exports = router;
+  const VUELO = require('./controller/vuelo');
+  router.post('/guardarvuelo', VUELO.guardarvuelo);
+  router.post('/actualizarvuelo', VUELO.actualizarvuelo);
+  
+module.exports = router;
