@@ -311,7 +311,7 @@ router.get('/get_AEROLINEA', (req, res) => {
       res.json(data);
     });
   });
-  
+
   router.get('/AEROLINEA', (req, res) => {
     conexion.query('SELECT * FROM AEROLINEA', (error, results) => {
       if (error) {

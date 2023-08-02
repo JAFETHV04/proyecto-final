@@ -5,7 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRO</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body{
+            display: ruby-text-container;
+            justify-content: center;
+            align-items: center;
+            font-style:oblique;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+    
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            
+            background-color: #08AEEA;background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+
+      }
+
+      
+      .buttons {
+min-width:600px;
+display: flex;
+position:relative;
+justify-content: space-between;
+float: left;
+}
+
+.editar {
+    min-width:600px;
+display:inline;
+position:relative;
+justify-content: right;
+
+}
+.editar a {
+text-decoration: none;
+font-size: 20px;
+width: 60px;
+height: 60px;
+line-height: 60px;
+text-align: center;
+float:right;
+background:#536cd8;
+color: #f1f1f1;
+border-radius: 50%;
+box-shadow: 2px 2px 5px rgba(0,0,0, .5);
+transition: all .4s ease-in-out;
+}
+
+.borrar {
+min-width:600px;
+padding: 10px;
+margin-left: -45px;
+margin-right: -150px;
+display:inline;
+
+}
+.borrar a {
+text-decoration: none;
+font-size: 20px;
+width: 60px;
+height: 60px;
+line-height: 60px;
+text-align: center;
+background:rgb(168, 75, 75);
+color: #f1f1f1;
+border-radius: 50%;
+box-shadow: 2px 2px 5px rgba(0,0,0, .5);
+transition: all .4s ease-in-out;
+}
+
+.buttons a {
+text-decoration: none;
+font-size: 20px;
+width: 60px;
+height: 60px;
+line-height: 60px;
+text-align: center;
+background: #254556;
+color: #f1f1f1;
+border-radius: 50%;
+box-shadow: 2px 2px 5px rgba(0,0,0, .5);
+transition: all .4s ease-in-out;
+}
+
+.buttons a:hover {
+transform: scale(1.2);
+} 
+
+      
+
+    </style>
 </head>
 <body>
   <!DOCTYPE html>
@@ -93,20 +185,24 @@
         <br>
               <div class="mb-3">
                 <br><br>
-                <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg" placeholder="Digite el PAIS" />
+                <input type="text" id="autocompleta_busqueda" class="form-control form-control-lg" placeholder="Digite el aeropuerto" />
                 <span id="buscar_resultado"></span>
                 </div>
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-10">
-                <a href="/crearaeropuerto" class="btn btn-info"><i class='bx bxs-edit'>Crear</i></a>
+              <section class="buttons">
+                <a href="/crearaeropuerto" class="fa fa-address-card"><i class='bx bxs-edit'></i></a>
+              </section>
+              
                 <table class="table table-light table-striped">
-                    <thead class="thead-light">
+                    <thead class="thead-dark">
                         <tr class="table-dark">
                            
                             <th scope="col">CODIGO</th> 
                             <th scope="col">NOMBRE</th>      
                             <th scope="col">CODIGO PAIS</th>  
+                            <th>.</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,8 +214,14 @@
                             <td class="table-light"><%= AEROPUERTO.idpais%></td>
                             <td>
                                
-                                <a href="/editaraeropuerto/<%= AEROPUERTO.idaeropuerto%>" class="btn btn-info btn-sm">Editar</a>
-                                <a href="/deleteaeropuerto/<%= AEROPUERTO.idaeropuerto%>" class="btn btn-danger">Eliminar</a>
+                              <section class="editar">
+                                <a href="/editaraeropuerto/<%= AEROPUERTO.idaeropuerto%>" class="fa fa-pencil-square-o"></a>
+                              </section>
+                              
+                              <section class="borrar">
+                                <a href="/deleteaeropuerto/<%= AEROPUERTO.idaeropuerto%>" class="fa fa-trash-o"></a>
+                              </section>
+                                
 
                                 
                      
