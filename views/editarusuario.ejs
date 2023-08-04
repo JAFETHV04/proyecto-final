@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="styles.css" rel="stylesheet">
-    <title>Actualizar Paises</title>
+    <title>Actualizar Usuarios</title>
     <style>
            body {
 background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
@@ -29,25 +29,34 @@ font-style:oblique;
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">PAISES</a>
+                <a class="nav-link active" aria-current="page" href="/">Usuarios</a>
               </li>                            
             </ul>            
           </div>
         </div>
       </nav>
-      <% if (PAIS) { %>
+      <% if (usuario) { %>
       <div class="container mt-4">          
           <div class="card border-secondary">  
                 <div class="card-header">Actualizar Registro</div>
                 <div class="card-body">
-                    <form action="/actualizapais" method="POST">
-                         <input type="idpais" name="idpais" value="<%= PAIS.idpais%>" hidden>
+                    <form action="/actualizau" method="POST">
+                         <input type="iduser" name="iduser" value="<%= usuario.iduser%>" hidden>
                         <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1" value="<%= PAIS.nombre%>">
-                        </div>                                                                 
+                          <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1" value="<%= usuario.nombre%>">
+                        </div>   
+                        <div class="mb-3">
+                            <label for="usuarios" class="form-label">Usuarios</label>
+                              <input type="text" class="form-control" id="usuarios" name="usuarios" tabindex="1" value="<%= usuario.usuarios%>">
+                            </div> 
+                            <div class="mb-3">
+                                <label for="contraseña" class="form-label">Contraseña</label>
+                                  <input type="text" class="form-control" id="contraseña" name="contraseña" tabindex="1" value="<%= usuario.contraseña%>">
+                                </div> 
+                                                                                          
                         <button type="submit" class="btn btn-info" tabindex="5">Actualizar</button>
-                        <a href="/PAIS" class="btn btn-danger">Cancelar</a>
+                        <a href="/usuario" class="btn btn-danger">Cancelar</a>
                     </form>      
                 </div>
             </div>     

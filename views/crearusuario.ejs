@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Crear Nuevos Paises</title>
+    <title>Crear Nuevos Usuarios</title>
     <style>
       body {
 background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
@@ -33,7 +33,7 @@ font-style:oblique;
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Crear Paises</a>
+                <a class="nav-link active" aria-current="page" href="/">Crear Usuarios</a>
               </li>                               
             </ul>            
           </div>
@@ -43,17 +43,25 @@ font-style:oblique;
             <div class="card border-radius">  
                 <div class="card-header">Nuevo Registro</div>
                 <div class="card-body">
-                    <form action="/guardarpais" method="POST">
+                    <form action="/guardaru" method="POST">
                         <div class="mb-3">
-                        <label for="idpais" class="form-label">Codigo Pais</label>
-                        <input type="text" class="form-control" id="idpais" name="idpais" tabindex="1">
+                        <label for="iduser" class="form-label">Codigo Usuario</label>
+                        <input type="text" class="form-control" id="iduser" name="iduser" tabindex="1">
                         </div>   
                         <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1">
                         </div>
+                        <div class="mb-3">
+                            <label for="usuarios" class="form-label">Usuarios</label>
+                            <input type="text" class="form-control" id="usuarios" name="usuarios" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contraseña" class="form-label">Contraseña</label>
+                                <input type="text" class="form-control" id="contraseña" name="contraseña" tabindex="1">
+                                </div>
                                 <button type="submit" class="btn btn-info" tabindex="2">Guardar</button>
-                                    <a href="/PAIS" class="btn btn-danger">Cancelar</a> 
+                                    <a href="/usuario" class="btn btn-danger">Cancelar</a> 
                              
                        
                     </form>
@@ -70,9 +78,9 @@ font-style:oblique;
 
 <script>
 
-    function cargar_PAIS(query = '')
+    function cargar_usuario(query = '')
     {
-    fetch('/get_PAIS?buscar_query='+query+'').then(function(response){ return response.json();
+    fetch('/get_usuario?buscar_query='+query+'').then(function(response){ return response.json();
     }).then(function(responseData){
     var html = '<ul class="list-group">'; if(responseData.length > 0)
     {
@@ -99,22 +107,22 @@ font-style:oblique;
     var buscar_elemento = document.getElementById("autocompleta_busqueda"); buscar_elemento.onkeyup = function(){
     var query = buscar_elemento.value;
     
-    cargar_PAIS(query);
+    cargar_usuario(query);
     
     };
     
     buscar_elemento.onfocus = function(){ var query = buscar_elemento.value;
-    cargar_PAIS(query);
+    cargar_usuario(query);
     
     };
     
     function cargar_texto(event)
     {
-    var PAIS = event.textContent;
+    var usuario = event.textContent;
     
-    console.log(PAIS);
+    console.log(usuario);
     
-    document.getElementById('autocompleta_busqueda').value = PAIS;
+    document.getElementById('autocompleta_busqueda').value = usuario;
     
     document.getElementById('buscar_resultado').innerHTML = '';
     }

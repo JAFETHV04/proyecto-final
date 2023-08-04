@@ -139,6 +139,7 @@ router.get('/get_pais', function(request, response, next){
 
 
 
+
 const PAIS = require('./controller/pais');
 router.post('/guardarpais', PAIS.guardarpais);
 router.post('/actualizapais', PAIS.actualizapais);
@@ -195,6 +196,8 @@ router.get('/editarpasajero/:idpasajero', (req,res)=>{
         }        
     });
 });
+
+
 
 const PASAJERO = require('./controller/pasajero');
   router.post('/guardarpasajero', PASAJERO.guardarpasajero);
@@ -619,4 +622,55 @@ router.get('/get_AEROLINEA', (req, res) => {
   router.post('/guardarvuelo', VUELO.guardarvuelo);
   router.post('/actualizarvuelo', VUELO.actualizarvuelo);
   
+////////////////////////USUARIO//////////////////////////////////////
+
+router.get('/get_usuario', (req, res) => {
+  var buscar_query = req.query.buscar_query;
+  var query = `SELECT usuario FROM usuario WHERE usuario LIKE '%${buscar_query}%'
+  LIMIT 1 `;
+  conexion.query(query, (error, data) => {
+    res.json(data);
+  });
+});
+
+router.get('/usuario', (req, res) => {
+  conexion.query('SELECT * FROM usuario', (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.render('../views/usuario.ejs', { results: results });
+    }
+  });
+});
+
+router.get('/crearusuario', (req, res) => {
+  res.render('../views/crearusuario.ejs');
+});
+
+router.get('/deleteusuario/:iduser', (req, res) => {
+  const iduser = req.params.iduser;
+  conexion.query('DELETE FROM usuario WHERE iduser = ?', [iduser], (error, results) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.redirect('/usuario');
+    }
+  });
+});
+
+router.get('/editarusuario/:iduser', (req, res) => {
+  const iduser = req.params.iduser;
+  conexion.query('SELECT * FROM usuario WHERE iduser=?', [iduser], (error, results) => {
+    if (error) {
+      throw error;
+    } else {
+      res.render('../views/editarusuario.ejs', {usuario: results[0] });
+    }
+  });
+});
+
+const usuario = require('./controller/usuario');
+router.post('/guardaru', usuario.guardaru);
+router.post('/actualizau', usuario.actualizau);
+
 module.exports = router;
