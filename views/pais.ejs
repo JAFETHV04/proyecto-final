@@ -246,7 +246,7 @@ transform: scale(1.2);
 
 <script>
 
-function cargar_pais(query = '')
+  function cargar_pais(query = '')
   {
       fetch('/get_pais?buscar_query='+query+'').then(function(response){
 
@@ -262,7 +262,7 @@ function cargar_pais(query = '')
               {
                   var regular_expression = new RegExp('('+query+')', 'gi');
 
-                  html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].PAIS.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+                  html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].nombre.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
               }
           }
           else
@@ -297,18 +297,16 @@ function cargar_pais(query = '')
 
   function cargar_texto(event)
   {
-      var PAIS = event.textContent;
+      var nombre = event.textContent;
 
-      console.log(PAIS);
+      console.log(nombre);
 
-      document.getElementById('autocompleta_busqueda').value = PAIS;
+      document.getElementById('autocompleta_busqueda').value = nombre;
 
       document.getElementById('buscar_resultado').innerHTML = '';
   }
-    
-    </script>
-    
-   
+
+</script>
 
 
 

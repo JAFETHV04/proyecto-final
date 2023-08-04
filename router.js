@@ -125,8 +125,8 @@ router.get('/get_pais', function(request, response, next){
     var buscar_query = request.query.buscar_query;
 
     var query = `
-    SELECT pais FROM PAIS 
-    WHERE PAIS LIKE '%${buscar_query}%' 
+    SELECT nombre FROM pais 
+    WHERE nombre LIKE '%${buscar_query}%' 
     LIMIT 2 `;
 
     conexion.query(query, function(error, data){
@@ -138,6 +138,7 @@ router.get('/get_pais', function(request, response, next){
 });
 
 
+
 const PAIS = require('./controller/pais');
 router.post('/guardarpais', PAIS.guardarpais);
 router.post('/actualizapais', PAIS.actualizapais);
@@ -147,10 +148,12 @@ router.get('/', (req, res)=>{
     res.render('home.ejs'); 
    })
 
-   router.get('/get_PASAJERO', function(request, response, next){
+   router.get('/get_pasajero', function(request, response, next){
     var buscar_query = request.query.buscar_query;
-    var query = `SELECT PASAJERO FROM PASAJERO WHERE PASAJERO LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT nombre FROM pasajero 
+    WHERE nombre LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, function(error, data){
     response.json(data);
     });
@@ -202,10 +205,12 @@ router.get('/', (req, res)=>{
     res.render('home.ejs'); 
    })
 
-   router.get('/get_AEROPUERTO', function(request, response, next){
+   router.get('/get_aeropuerto', function(request, response, next){
     var buscar_query = request.query.buscar_query;
-    var query = `SELECT AEROPUERTO FROM AEROPUERTO WHERE AEROPUERTO LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT nombre FROM aeropuerto 
+    WHERE nombre LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, function(error, data){
     response.json(data);
     });
@@ -253,10 +258,12 @@ const AEROPUERTO = require('./controller/aeropuerto');
   router.post('/actualizaa', AEROPUERTO.actualizaa);
   
 //////////ASIENTO////////
-router.get('/get_ASIENTO', (req, res) => {
+router.get('/get_asiento', (req, res) => {
   var buscar_query = req.query.buscar_query;
-  var query = `SELECT ASIENTO FROM ASIENTO WHERE ASIENTO LIKE '%${buscar_query}%'
-  LIMIT 1 `;
+  var query = `
+  SELECT letra FROM asiento 
+  WHERE letra LIKE '%${buscar_query}%' 
+  LIMIT 2 `;
   conexion.query(query, (error, data) => {
     res.json(data);
   });
@@ -305,8 +312,10 @@ const ASIENTO = require('./controller/asiento');
 ////////////AEROLINEA//////
 router.get('/get_AEROLINEA', (req, res) => {
     var buscar_query = req.query.buscar_query;
-    var query = `SELECT AEROLINEA FROM AEROLINEA WHERE AEROLINEA LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT nombre FROM aerolinea 
+    WHERE nombre LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, (error, data) => {
       res.json(data);
     });
@@ -354,8 +363,10 @@ router.get('/get_AEROLINEA', (req, res) => {
   /////AVION//////
   router.get('/get_AVION', (req, res) => {
     var buscar_query = req.query.buscar_query;
-    var query = `SELECT AVION FROM AVION WHERE AVION LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT idavion FROM avion 
+    WHERE idavion LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, (error, data) => {
       res.json(data);
     });
@@ -402,10 +413,12 @@ router.get('/get_AEROLINEA', (req, res) => {
   router.post('/actualizaavion', AVION.actualizaavion);
   
   //////////PAGO//////////////
-  router.get('/get_PAGO', (req, res) => {
+  router.get('/get_pago', (req, res) => {
     var buscar_query = req.query.buscar_query;
-    var query = `SELECT PAGO FROM PAGO WHERE PAGO LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT idpago FROM PAGO 
+    WHERE idpago LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, (error, data) => {
       res.json(data);
     });
@@ -452,14 +465,16 @@ router.get('/get_AEROLINEA', (req, res) => {
   router.post('/actualizapago', PAGO.actualizapago);
 
   //////////RESERVA////////////////////
-  router.get('/get_RESERVA', (req, res) => {
-    var buscar_query = req.query.buscar_query;
-    var query = `SELECT RESERVA FROM RESERVA WHERE RESERVA LIKE '%${buscar_query}%'
-    LIMIT 1 `;
-    conexion.query(query, (error, data) => {
-      res.json(data);
+  router.get('/get_reserva', function(request, response, next){
+    var buscar_query = request.query.buscar_query;
+    var query = `
+    SELECT idreserva FROM reserva 
+    WHERE idreserva LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
+    conexion.query(query, function(error, data){
+    response.json(data);
     });
-  });
+    });
   
   router.get('/RESERVA', (req, res) => {
     conexion.query('SELECT * FROM RESERVA', (error, results) => {
@@ -503,10 +518,12 @@ router.get('/get_AEROLINEA', (req, res) => {
 
   ///////TARIFA///////////
 
-  router.get('/get_TARIFA', (req, res) => {
+  router.get('/get_tarifa', (req, res) => {
     var buscar_query = req.query.buscar_query;
-    var query = `SELECT TARIFA FROM TARIFA WHERE TARIFA LIKE '%${buscar_query}%'
-    LIMIT 1 `;
+    var query = `
+    SELECT clase FROM tarifa 
+    WHERE clase LIKE '%${buscar_query}%' 
+    LIMIT 2 `;
     conexion.query(query, (error, data) => {
       res.json(data);
     });

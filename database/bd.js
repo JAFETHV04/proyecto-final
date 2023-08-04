@@ -2,7 +2,7 @@
 const conexion = mysql.createConnection({
   host     : 'localhost',
     user     : 'root',
-   password : 'rosaelisa123',
+   password : '220431',
    database : 'RESERVAV'  
 });
     conexion.connect((error)=>{
@@ -12,4 +12,4 @@ const conexion = mysql.createConnection({
    }
     console.log('¡Conectado a la Base de Datos!');
   });
-  /*module.exports = conexion;
+  module.exports = conexion;*/

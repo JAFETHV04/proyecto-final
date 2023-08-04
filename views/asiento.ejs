@@ -248,51 +248,65 @@ transform: scale(1.2);
 
 <script>
 
-    function cargar_asiento(query = '')
-    {
-    fetch('/get_asiento?buscar_query='+query+'').then(function(response){ return response.json();
-    }).then(function(responseData){
-    var html = '<ul class="list-group">'; if(responseData.length > 0)
-    {
-    for(var count = 0; count < responseData.length; count++)
-    {
-    var regular_expression = new RegExp('('+query+')', 'gi');
-    
-    html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].letra.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
-    }
-    }
-    else
-     
-    {
-    html += '<a href="#" class="list-group-item list-group-item-action disabled">Registro No Encontrado</a>'; } html += '</ul>';
-    
-    document.getElementById('buscar_resultado').innerHTML = html;
-    
-    });
-    }
-    
-    var buscar_elemento = document.getElementById("autocompleta_busqueda"); buscar_elemento.onkeyup = function(){
-    var query = buscar_elemento.value;
-    
-    cargar_asiento(query);
-    
-    };
-    
-    buscar_elemento.onfocus = function(){ var query = buscar_elemento.value;
-    cargar_asiento(query);
-    
-    };
-    
-    function cargar_texto(event)
-    {
-    var letra = event.textContent;
-    
-    console.log(letra);
-    
-    document.getElementById('autocompleta_busqueda').value = letra;
-    
-    document.getElementById('buscar_resultado').innerHTML = '';
-    }
-    
-    </script>
+  function cargar_asiento(query = '')
+  {
+      fetch('/get_asiento?buscar_query='+query+'').then(function(response){
+
+          return response.json();
+
+      }).then(function(responseData){
+
+          var html = '<ul class="list-group">';
+
+          if(responseData.length > 0)
+          {
+              for(var count = 0; count < responseData.length; count++)
+              {
+                  var regular_expression = new RegExp('('+query+')', 'gi');
+
+                  html += '<a href="#" class="list-group-item list-group-item-action" onclick="get_text(this)">'+responseData[count].letra.replace(regular_expression, '<span class="text-primary fw-bold">$1</span>')+'</a>';
+              }
+          }
+          else
+          {
+              html += '<a href="#" class="list-group-item list-group-item-action disabled">Registro No Encontrado</a>';
+          }
+
+          html += '</ul>';
+
+          document.getElementById('buscar_resultado').innerHTML = html;
+
+      });
+  }
+
+  var buscar_elemento = document.getElementById("autocompleta_busqueda");
+
+  buscar_elemento.onkeyup = function(){
+
+      var query = buscar_elemento.value;
+
+      cargar_asiento(query);
+
+  };
+
+  buscar_elemento.onfocus = function(){
+
+      var query = buscar_elemento.value;
+
+      cargar_asiento(query);
+
+  };
+
+  function cargar_texto(event)
+  {
+      var letra = event.textContent;
+
+      console.log(letra);
+
+      document.getElementById('autocompleta_busqueda').value = letra;
+
+      document.getElementById('buscar_resultado').innerHTML = '';
+  }
+
+</script>
     
